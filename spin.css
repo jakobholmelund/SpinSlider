@@ -1,0 +1,249 @@
+/* CSS for jQuery spin Plugin 1.2.3
+ * www.ZURB.com/playground
+ * Copyright 2010, ZURB
+ * Free to use under the MIT license.
+ * http://www.opensource.org/licenses/mit-license.php
+ 
+ 
+ 
+/* PUT IN YOUR SLIDER ID AND SIZE TO MAKE LOAD BEAUTIFULLY
+   ================================================== */
+#featured { 
+	width: 940px;
+	height: 450px;
+	background: #000 url('spin/loading.gif') no-repeat center center;
+	overflow: hidden; }
+#featured>img,  
+#featured>div,
+#featured>a { display: none; }
+
+
+
+
+/* CONTAINER
+   ================================================== */
+
+div.spin-wrapper {
+    width: 1px;
+    height: 1px;
+    position: relative; }
+
+div.spin {
+    width: 1px;
+    height: 1px;
+    position: relative;
+    overflow: hidden }
+
+div.spin>img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none; }
+
+div.spin>a {
+    border: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    line-height: 0; 
+    display: none; }
+
+.spin>div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; }
+
+/* Note: If your slider only uses content or anchors, you're going to want to put the width and height declarations on the ".spin>div" and "div.spin>a" tags in addition to just the .spin-wrapper */
+
+
+/* TIMER
+   ================================================== */
+
+div.timer {
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    opacity: .6;
+    cursor: pointer;
+    z-index: 1001; }
+
+span.rotator {
+    display: block;
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 0;
+    left: -20px;
+    background: url(spin/rotator-black.png) no-repeat;
+    z-index: 3; }
+
+span.mask {
+    display: block;
+    width: 20px;
+    height: 40px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+    overflow: hidden; }
+
+span.rotator.move {
+    left: 0 }
+
+span.mask.move {
+    width: 40px;
+    left: 0;
+    background: url(spin/timer-black.png) repeat 0 0; }
+
+span.pause {
+    display: block;
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: url(spin/pause-black.png) no-repeat;
+    z-index: 4;
+    opacity: 0; }
+
+span.pause.active {
+    background: url(spin/pause-black.png) no-repeat 0 -40px }
+
+div.timer:hover span.pause,
+span.pause.active {
+    opacity: 1 }
+
+
+/* CAPTIONS
+   ================================================== */
+
+.spin-caption {
+    display: none;
+    font-family: "HelveticaNeue", "Helvetica-Neue", Helvetica, Arial, sans-serif; }
+
+.spin-wrapper .spin-caption {
+    background: #000;
+    background: rgba(0,0,0,.6);
+    z-index: 1000;
+    color: #fff;
+	text-align: center;
+	padding: 7px 0;
+    font-size: 13px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 100%; }
+
+
+/* DIRECTIONAL NAV
+   ================================================== */
+
+div.slider-nav {
+    display: block }
+
+div.slider-nav span {
+    width: 78px;
+    height: 100px;
+    text-indent: -9999px;
+    position: absolute;
+    z-index: 1000;
+    top: 50%;
+    margin-top: -50px;
+    cursor: pointer; }
+
+div.slider-nav span.right {
+    background: url(spin/right-arrow.png);
+    right: 0; }
+
+div.slider-nav span.left {
+    background: url(spin/left-arrow.png);
+    left: 0; }
+
+/* BULLET NAV
+   ================================================== */
+
+.spin-bullets {
+    position: absolute;
+    z-index: 1000;
+    list-style: none;
+    bottom: -40px;
+    left: 50%;
+	margin-left: -50px;
+    padding: 0; }
+
+.spin-bullets li {
+    float: left;
+    margin-left: 5px;
+    cursor: pointer;
+    color: #999;
+    text-indent: -9999px;
+    background: url(spin/bullets.jpg) no-repeat 4px 0;
+    width: 13px;
+    height: 12px;
+    overflow: hidden; }
+
+.spin-bullets li.active {
+    color: #222;
+    background-position: -8px 0; }
+    
+.spin-bullets li.has-thumb {
+    background: none;
+    width: 100px;
+    height: 75px; }
+
+.spin-bullets li.active.has-thumb {
+    background-position: 0 0;
+    border-top: 2px solid #000; }
+
+
+/* These are just the demo styles and these can be removed and Orbit 
+will still work like a champ (except any content block needs a background which
+our demo gets from this sheet) */
+
+.container {
+    position: absolute; 
+    top: 50%; 
+    left: 50%;
+    margin: -300px 0 0 -470px; }
+    
+.content { background: url(dummy-images/coffee.jpg); }
+.content h1 {
+    font-size: 40px; 
+    text-transform: uppercase; 
+    font-weight: bold; 
+    text-align: center;
+    margin-top: 180px;
+    color: #222;
+    line-height: 50px;  }
+.content h3 {
+    text-align: center; 
+    font-size: 22px; 
+    color: #222; }
+    
+/*  --------------------------------------------------
+    Global Reset & Standards
+    -------------------------------------------------- */
+    html, body { margin: 0; padding: 0; }
+    h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, cite, code, img, small, strike, strong, em, sub, sup, tt, dd, dl, dt, li, ol, ul, fieldset, form, label, legend, button, table, caption, tbody, tfoot, thead, tr, th, td, section { margin: 0; padding: 0; border: 0; font-weight: normal; font-style: normal; font-size: 100%; line-height: 1; font-family: inherit; text-align: left; }
+    table { border-collapse: collapse; border-spacing: 0; }
+    ol, ul { list-style: none; }
+
+    body { background: #fff; font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; font-size: 13px; line-height: 18px; text-shadow: 0 0 1px rgba(0,0,0,0.01); color: #555; }
+    
+    h4 {
+        font-weight: bold; 
+        color: #222;
+        font-size: 15px; }
+        
+    a { 
+        color: #00baff;
+        text-decoration: none; 
+        font-weight: bold;
+        font-size: 12px; }
+        
+    a:hover { text-decoration: underline; }

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+        <head>
+                <title>Spin - Demo</title>
+                <link rel="stylesheet" type="text/css" href="spin.css">
+                <script type="text/javascript" src="mootools-core-1.4.5-full-nocompat.js"></script>
+                <script type="text/javascript" src="mootools-more-1.4.0.1.js"></script>
+                <script type="text/javascript" src="Source/Spin.js"></script>
+                <script type="text/javascript">
+                        window.addEvent("domready", function(){
+                             $("featured").spin();   
+                        });
+                </script>
+        </head>
+        <body>
+                <div class="container">
+                <h4>MadFarmer's Spin slider</h4>
+                <div id="featured"> 
+                        <div class="content" style="">
+                                <h1>Orbit does content now.</h1>
+                                <h3>Highlight me...I'm text.</h3>
+                        </div>
+                        <a href=""><img src="dummy-images/overflow.jpg" /></a>
+                        <img src="dummy-images/captions.jpg" data-caption="#htmlCaption" />
+                        <img src="dummy-images/features.jpg"  />
+                </div>
+                </div>  
+        </body>
+</html>
