@@ -94,7 +94,7 @@ var Spin = new Class({
 		}
 
 		if(this.options.captions) {
-				this.caption = new Element("div").addClass("spin-caption").inject(this.spinWrap);
+				this.caption = new Element("div",{style:"display:block;"}).addClass("spin-caption").inject(this.spinWrap);
 				this.caption.fade("hide");
 				this._setCaption();
 		}
@@ -326,10 +326,15 @@ var Spin = new Class({
 	},
 	_setCaption:function(){
 		var caption = this.activeSlide.get("rel");
-		if(this.options.captions && caption !== undefined){
-			this.caption.set("html", caption);
+		if(this.options.captions && caption !== undefined && caption !== "" && caption !== null){
+			this.caption.set("text", caption);
 			if(this.options.captionTransition === "fade"){
-				this.caption.morph();
+				this.caption.set("morph", this.options.captionTransitionOption);
+				this.caption.setStyles({
+					opacity:0.0,
+					visibility:"visible"
+				});
+				this.caption.morph({opacity:1.0});
 			}else if(this.options.captionTransition === "slideOpenH"){
 				this.caption.set("slide",Object.merge({mode:"horizontal"}, this.options.captionTransitionOption));
 				this.caption.slide("in");
