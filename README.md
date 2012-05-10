@@ -40,7 +40,7 @@ or advanced use
 
 <div id="featured"> 
         <div class="content" style="">
-                <h1>Orbit does content now.</h1>
+                <h1>Spin does content now.</h1>
                 <h3>Highlight me...I'm text.</h3>
         </div>
         <a href=""><img src="dummy-images/overflow.jpg" /></a>
