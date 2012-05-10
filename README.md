@@ -16,6 +16,7 @@ How to use
 
 ##Advanced use
 ----------
+
     <script type="text/javascript">
     window.addEvent("domready", function() {
          $('#featured').spin({
