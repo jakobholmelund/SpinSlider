@@ -172,104 +172,102 @@ var Spin = new Class({
 			orbitWidth = this.spin.getSize().x;
 			orbitHeight = this.spin.getSize().y;
 
+			var morphOptions, prevMorphOptions, activeStyles;
+			activeSlide.set("morph", this.options.transitionOption);
 
 			if(this.options.transition === "fade"){
-				activeSlide.set("morph", this.options.transitionOption);
-				activeSlide.setStyles({
+				activeStyles = {
 					opacity:0.0,
 					"z-index" : 3
-				});
-				activeSlide.get("morph").start({"opacity": 1.0}).chain(function(){
-					self.slides[prevActiveSlideIndex].setStyle("z-index", 1);
-					self.unlock();
-					self.options.afterSlideChange(this);
-				});
+				};
+				morphOptions = {
+					"opacity": 1.0
+				};
 			}else if(this.options.transition === "horizontal-slide"){
-				activeSlide.set("morph", this.options.transitionOption);
 				if(slideDirection == "next") {
-					activeSlide.setStyles({
+					activeStyles = {
 						"left": orbitWidth,
 						"z-index" : 3
-					});
-					activeSlide.get("morph").start({"left": 0}).chain(function(){
-						self.slides[prevActiveSlideIndex].setStyle("z-index", 1);
-						self.unlock();
-						self.options.afterSlideChange(this);
-					});
+					};
+					morphOptions = {
+						"left": 0
+					};
 				}
 				if(slideDirection == "prev") {
-					activeSlide.setStyles({
+					activeStyles = {
 						"left": -orbitWidth,
 						"z-index" : 3
-					});
-					activeSlide.get("morph").start({"left": 0}).chain(function(){
-						self.slides[prevActiveSlideIndex].setStyle("z-index", 1);
-						self.unlock();
-						self.options.afterSlideChange(this);
-					});
+					};
+					morphOptions = {
+						"left": 0
+					};
 				}
 			}else if(this.options.transition === "vertical-slide"){
-				activeSlide.set("morph", this.options.transitionOption);
 				if(slideDirection == "prev") {
-					activeSlide.setStyles({
+					activeStyles = {
 						"top": orbitWidth,
 						"z-index" : 3
-					});
-					activeSlide.get("morph").start({"top": 0}).chain(function(){
-						self.slides[prevActiveSlideIndex].setStyle("z-index", 1);
-						self.unlock();
-						self.options.afterSlideChange(this);
-					});
+					};
+					morphOptions = {
+						"top": 0
+					};
 				}
 				if(slideDirection == "next") {
-					activeSlide.setStyles({
+					activeStyles = {
 						"top": -orbitWidth,
 						"z-index" : 3
-					});
-					activeSlide.get("morph").start({"top": 0}).chain(function(){
-						self.slides[prevActiveSlideIndex].setStyle("z-index", 1);
-						self.unlock();
-						self.options.afterSlideChange(this);
-					});
+					};
+					morphOptions = {
+						"top": 0
+					};
 				}
 			}else if(this.options.transition === "horizontal-push"){
-				activeSlide.set("morph", this.options.transitionOption);
-				activePrevSlide.set("morph", this.options.transitionOption);
 				if(slideDirection == "next") {
-					activeSlide.setStyles({
+					activeStyles = {
 						"left": orbitWidth,
 						"z-index" : 3
-					});
-					activeSlide.get("morph").start({"left": 0}).chain(function(){
-						self.slides[prevActiveSlideIndex].setStyle("z-index", 1);
-						self.unlock();
-						self.options.afterSlideChange(this);
-					});
+					};
+					morphOptions = {
+						"left": 0
+					};
 
-					activePrevSlide.get("morph").start({"left": -orbitWidth}).chain(function(){
-						self.slides[prevActiveSlideIndex].setStyle("z-index", 1);
-						self.unlock();
-						self.options.afterSlideChange(this);
-					});
+					prevMorphOptions = {
+						"left": -orbitWidth
+					};
 				}
 				if(slideDirection == "prev") {
-					activeSlide.setStyles({
+					activeStyles = {
 						"left": -orbitWidth,
 						"z-index" : 3
-					});
-					activeSlide.get("morph").start({"left": 0}).chain(function(){
-						self.slides[prevActiveSlideIndex].setStyle("z-index", 1);
-						self.unlock();
-						self.options.afterSlideChange(this);
-					});
+					};
+					morphOptions = {
+						"left": 0
+					};
 
-					activePrevSlide.get("morph").start({"left": orbitWidth}).chain(function(){
-						self.slides[prevActiveSlideIndex].setStyle("z-index", 1);
-						self.unlock();
-						self.options.afterSlideChange(this);
-					});
+					prevMorphOptions = {
+						"left": orbitWidth
+					};
 				}
 			}
+
+			activeSlide.setStyles(activeStyles);
+			activeSlide.get("morph").start(morphOptions).chain(function(){
+						self.slides[prevActiveSlideIndex].setStyle("z-index", 1);
+						self.unlock();
+						self.options.afterSlideChange(this);
+			});
+
+			if(prevMorphOptions !== undefined){
+				activePrevSlide.set("morph", this.options.transitionOption);
+				activePrevSlide.get("morph").start(prevMorphOptions).chain(function(){
+						self.slides[prevActiveSlideIndex].setStyle("z-index", 1);
+						self.unlock();
+						self.options.afterSlideChange(this);
+					});
+			}
+			
+
+
 			this._setCaption();
 		}
 
