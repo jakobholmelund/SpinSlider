@@ -277,7 +277,6 @@ var Spin = new Class({
 	_setActiveBullet:function(){
 		if(!this.options.bullets) { return false; } else {
 			var activeSlideIndex = this.slides.indexOf(this.activeSlide);
-			console.log(activeSlideIndex);
 			this.bullets.getChildren().each(function(bullet, index){
 				if(index === activeSlideIndex){
 					bullet.addClass("active");
