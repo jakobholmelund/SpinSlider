@@ -30,7 +30,7 @@ var Spin = new Class({
 		startClockOnMouseOutAfter: 1000,// how long after MouseOut should the timer start again
 		directionalNav: true,// manual advancing directional navs
 		captions: true,// do you want captions?
-		captionTransition: "fade",//fade, slideOpenH , slideOpenV, followSlide,none
+		captionTransition: "fade",//fade, none
 		captionTransitionOption: {transition:"linear",duration:600},// fade, slideOpen, none
 		bullets: true,// true or false to activate the bullet navigation
 		bulletThumbs: false,// thumbnails for the bullets
@@ -95,7 +95,7 @@ var Spin = new Class({
 
 		if(this.options.captions) {
 				this.caption = new Element("div",{style:"display:block;"}).addClass("spin-caption").inject(this.spinWrap);
-				this.caption.fade("hide");
+				//this.caption.fade("hide");
 				this._setCaption();
 		}
 		if(this.options.directionalNav) {
@@ -332,17 +332,10 @@ var Spin = new Class({
 				this.caption.set("morph", this.options.captionTransitionOption);
 				this.caption.setStyles({
 					opacity:0.0,
-					visibility:"visible"
+					visibility:"visible",
+					display:"block"
 				});
 				this.caption.morph({opacity:1.0});
-			}else if(this.options.captionTransition === "slideOpenH"){
-				this.caption.set("slide",Object.merge({mode:"horizontal"}, this.options.captionTransitionOption));
-				this.caption.slide("in");
-			}else if(this.options.captionTransition === "slideOpenV"){
-				this.caption.set("slide",this.options.captionTransitionOption);
-				this.caption.slide("in");
-			}else if(this.options.captionTransition === "followSlide"){
-
 			}else if(this.options.captionTransition === "none"){
 				this.caption.fade("show");
 			}
