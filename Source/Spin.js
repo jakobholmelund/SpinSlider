@@ -1,21 +1,19 @@
 /*
 ---
-description: Image and content slider
+
+name: PictureSlider
+
+description: Animated picture slider. This is a port of jQuery Orbit Slider
 
 license: MIT-style
 
 authors:
-- MadFarmer
-- www.ZURB.com/playground
+- Jakob Holmelund
 
 requires:
-- core/1.3.0:Element
-- core/1.3.0:Elements
-- core/1.3.0:Array
+- core/1.4.3: [Class, Element.Style, Fx.Tween]
 
-provides: [Element.spin, Spin]
-- Element.spin
-- Spin
+provides: Spin, Element.spin
 
 ...
 */
