@@ -326,15 +326,15 @@ var Spin = new Class({
 	},
 	_setCaption:function(){
 		var caption = this.activeSlide.get("rel");
+		this.caption.setStyles({
+				opacity:0.0,
+				visibility:"visible",
+				display:"block"
+			});
 		if(this.options.captions && caption !== undefined && caption !== "" && caption !== null){
 			this.caption.set("text", caption);
 			if(this.options.captionTransition === "fade"){
 				this.caption.set("morph", this.options.captionTransitionOption);
-				this.caption.setStyles({
-					opacity:0.0,
-					visibility:"visible",
-					display:"block"
-				});
 				this.caption.morph({opacity:1.0});
 			}else if(this.options.captionTransition === "none"){
 				this.caption.fade("show");
