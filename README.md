@@ -40,11 +40,11 @@ How to use
     </script>
 
     <div id="featured"> 
-        <div class="content" style="">
+        <div class="content" style="" rel="Caption 1">
                 <h1>Orbit does content now.</h1>
                 <h3>Highlight me...I'm text.</h3>
         </div>
-        <a href=""><img src="dummy-images/overflow.jpg" /></a>
-        <img src="dummy-images/captions.jpg" data-caption="#htmlCaption" />
+        <a href=""><img src="dummy-images/overflow.jpg" rel="Caption 2" /></a>
+        <img src="dummy-images/captions.jpg" rel="Caption 3" />
         <img src="dummy-images/features.jpg"  />
     </div>
