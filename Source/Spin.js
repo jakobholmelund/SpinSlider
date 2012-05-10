@@ -8,14 +8,14 @@ authors:
 - MadFarmer
 - www.ZURB.com/playground
 
-provides: [Element.spin, Spin]
-- Element.spin
-- Spin
-
 requires:
 - core/1.3.0:Element
 - core/1.3.0:Elements
 - core/1.3.0:Array
+
+provides: [Element.spin, Spin]
+- Element.spin
+- Spin
 
 ...
 */
