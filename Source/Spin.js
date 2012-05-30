@@ -116,7 +116,7 @@ var Spin = new Class({
 
 			//Pause Timer on hover
 		if(this.options.pauseOnHover) {
-			spinWrap.addEvent("mouseenter", function(){
+			this.spinWrap.addEvent("mouseenter", function(){
 				self._stopClock();
 			});
 		}
