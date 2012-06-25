@@ -265,10 +265,8 @@ var Spin = new Class({
 						self.options.afterSlideChange(this);
 					});
 			}
-			
 
-
-			this._setCaption();
+			if(this.options.captions) this._setCaption();
 		}
 
 	},
