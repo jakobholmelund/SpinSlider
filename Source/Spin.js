@@ -99,7 +99,6 @@ var Spin = new Class({
 				this._setCaption();
 		}
 		if(this.options.directionalNav) {
-				if(this.options.directionalNav == "false") { return false; }
 				var sliderNav = new Element("div").addClass("slider-nav").inject(this.spinWrap);
 				this.leftBtn = new Element("span").addClass("left").inject(sliderNav);
 				this.rightBtn = new Element("span").addClass("right").inject(sliderNav);
@@ -169,8 +168,8 @@ var Spin = new Class({
 			this.activeSlide = activeSlide;
 			this._setActiveBullet();
 			activePrevSlide.setStyle("z-index", 2);
-			orbitWidth = this.spin.getSize().x;
-			orbitHeight = this.spin.getSize().y;
+			var orbitWidth = this.spin.getSize().x;
+			var orbitHeight = this.spin.getSize().y;
 
 			var morphOptions, prevMorphOptions, activeStyles;
 			activeSlide.set("morph", this.options.transitionOption);
@@ -205,7 +204,7 @@ var Spin = new Class({
 			}else if(this.options.transition === "vertical-slide"){
 				if(slideDirection == "prev") {
 					activeStyles = {
-						"top": orbitWidth,
+						"top": orbitHeight,
 						"z-index" : 3
 					};
 					morphOptions = {
@@ -214,7 +213,7 @@ var Spin = new Class({
 				}
 				if(slideDirection == "next") {
 					activeStyles = {
-						"top": -orbitWidth,
+						"top": -orbitHeight,
 						"z-index" : 3
 					};
 					morphOptions = {
@@ -265,10 +264,8 @@ var Spin = new Class({
 						self.options.afterSlideChange(this);
 					});
 			}
-			
 
-
-			this._setCaption();
+			if(this.options.captions) this._setCaption();
 		}
 
 	},
@@ -316,7 +313,9 @@ var Spin = new Class({
 		}
 	},
 	_stopClock:function(){
-		if(!this.options.timer || this.options.timer == 'false') { return false; } else {
+		if(!this.options.timer) { 
+			return false; 
+		} else {
 			this.timerRunning = false;
 			clearInterval(this.clock);
 			this.timer.pause.addClass('active');
