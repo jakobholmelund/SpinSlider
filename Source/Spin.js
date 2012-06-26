@@ -168,8 +168,8 @@ var Spin = new Class({
 			this.activeSlide = activeSlide;
 			this._setActiveBullet();
 			activePrevSlide.setStyle("z-index", 2);
-			orbitWidth = this.spin.getSize().x;
-			orbitHeight = this.spin.getSize().y;
+			var orbitWidth = this.spin.getSize().x;
+			var orbitHeight = this.spin.getSize().y;
 
 			var morphOptions, prevMorphOptions, activeStyles;
 			activeSlide.set("morph", this.options.transitionOption);
