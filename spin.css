@@ -70,7 +70,7 @@ div.timer {
     right: 10px;
     opacity: .6;
     cursor: pointer;
-    z-index: 1001; }
+    z-index: 101; }
 
 span.rotator {
     display: block;
@@ -129,7 +129,7 @@ span.pause.active {
 .spin-wrapper .spin-caption {
     background: #000;
     background: rgba(0,0,0,.6);
-    z-index: 1000;
+    z-index: 100;
     color: #fff;
 	text-align: center;
 	padding: 7px 0;
@@ -151,7 +151,7 @@ div.slider-nav span {
     height: 100px;
     text-indent: -9999px;
     position: absolute;
-    z-index: 1000;
+    z-index: 100;
     top: 50%;
     margin-top: -50px;
     cursor: pointer; }
@@ -169,7 +169,7 @@ div.slider-nav span.left {
 
 .spin-bullets {
     position: absolute;
-    z-index: 1000;
+    z-index: 100;
     list-style: none;
     bottom: -40px;
     left: 50%;
@@ -224,26 +224,3 @@ our demo gets from this sheet) */
     text-align: center; 
     font-size: 22px; 
     color: #222; }
-    
-/*  --------------------------------------------------
-    Global Reset & Standards
-    -------------------------------------------------- */
-    html, body { margin: 0; padding: 0; }
-    h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, cite, code, img, small, strike, strong, em, sub, sup, tt, dd, dl, dt, li, ol, ul, fieldset, form, label, legend, button, table, caption, tbody, tfoot, thead, tr, th, td, section { margin: 0; padding: 0; border: 0; font-weight: normal; font-style: normal; font-size: 100%; line-height: 1; font-family: inherit; text-align: left; }
-    table { border-collapse: collapse; border-spacing: 0; }
-    ol, ul { list-style: none; }
-
-    body { background: #fff; font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; font-size: 13px; line-height: 18px; text-shadow: 0 0 1px rgba(0,0,0,0.01); color: #555; }
-    
-    h4 {
-        font-weight: bold; 
-        color: #222;
-        font-size: 15px; }
-        
-    a { 
-        color: #00baff;
-        text-decoration: none; 
-        font-weight: bold;
-        font-size: 12px; }
-        
-    a:hover { text-decoration: underline; }

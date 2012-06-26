@@ -8,7 +8,10 @@
                 <script type="text/javascript" src="Source/Spin.js"></script>
                 <script type="text/javascript">
                         window.addEvent("domready", function(){
-                             $("featured").spin();   
+                             $("featured").spin({
+                                transition:"horizontal-push",
+                                transitionOption: {transition:"quad:in:out",duration:800}
+                             });   
                         });
                 </script>
         </head>
