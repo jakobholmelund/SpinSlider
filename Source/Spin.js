@@ -99,7 +99,6 @@ var Spin = new Class({
 				this._setCaption();
 		}
 		if(this.options.directionalNav) {
-				if(this.options.directionalNav == "false") { return false; }
 				var sliderNav = new Element("div").addClass("slider-nav").inject(this.spinWrap);
 				this.leftBtn = new Element("span").addClass("left").inject(sliderNav);
 				this.rightBtn = new Element("span").addClass("right").inject(sliderNav);
@@ -314,7 +313,9 @@ var Spin = new Class({
 		}
 	},
 	_stopClock:function(){
-		if(!this.options.timer || this.options.timer == 'false') { return false; } else {
+		if(!this.options.timer) { 
+			return false; 
+		} else {
 			this.timerRunning = false;
 			clearInterval(this.clock);
 			this.timer.pause.addClass('active');
