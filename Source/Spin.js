@@ -204,7 +204,7 @@ var Spin = new Class({
 			}else if(this.options.transition === "vertical-slide"){
 				if(slideDirection == "prev") {
 					activeStyles = {
-						"top": orbitWidth,
+						"top": orbitHeight,
 						"z-index" : 3
 					};
 					morphOptions = {
@@ -213,7 +213,7 @@ var Spin = new Class({
 				}
 				if(slideDirection == "next") {
 					activeStyles = {
-						"top": -orbitWidth,
+						"top": -orbitHeight,
 						"z-index" : 3
 					};
 					morphOptions = {
