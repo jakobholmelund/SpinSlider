@@ -322,14 +322,25 @@ var Spin = new Class({
 		}
 	},
 	_setCaption:function(){
-		var caption = this.activeSlide.get("rel");
+		if (!this.caption) return; // same as this.options.caption
+		var caption;
+		var _captionLocation = this.activeSlide.get("data-caption");
+		if (_captionLocation) {
+			var _captionBody = document.getElement(_captionLocation);
+			if (_captionBody) {
+				caption = _captionBody.get("html");
+				this.caption.set("id", _captionLocation);
+			}
+		} else {
+			caption = this.activeSlide.get("rel");
+		}
 		this.caption.setStyles({
 				opacity:0.0,
 				visibility:"visible",
 				display:"block"
 			});
-		if(this.options.captions && caption !== undefined && caption !== "" && caption !== null){
-			this.caption.set("text", caption);
+		if(caption){
+			this.caption.set("html", caption);
 			if(this.options.captionTransition === "fade"){
 				this.caption.set("morph", this.options.captionTransitionOption);
 				this.caption.morph({opacity:1.0});
