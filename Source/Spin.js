@@ -348,8 +348,9 @@ var Spin = new Class({
 });
 
 Element.implement({
-  spin : function(options) {
-	new Spin(this, options);
-	return this;
-  }
+	spin : function(options) {
+		var spin = new Spin(this, options);
+		this.store('spin', spin);
+		return this;
+	}
 });
