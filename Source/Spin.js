@@ -145,12 +145,12 @@ var Spin = new Class({
 
 		if(!this.locked){
 			this.lock();
-			if(direction == "next") {
+			if(direction === "next") {
 				activeSlideIndex++;
-				if(activeSlideIndex == slideLength) {
+				if(activeSlideIndex === slideLength) {
 					activeSlideIndex = 0;
 				}
-			} else if(direction == "prev") {
+			} else if(direction === "prev") {
 				activeSlideIndex--;
 				if(activeSlideIndex < 0) {
 					activeSlideIndex = slideLength-1;
@@ -163,99 +163,57 @@ var Spin = new Class({
 					slideDirection = "prev";
 				}
 			}
-			var activePrevSlide =this.slides[prevActiveSlideIndex];
+			var activePrevSlide = this.slides[prevActiveSlideIndex];
 			var activeSlide = this.slides[activeSlideIndex];
 			this.activeSlide = activeSlide;
 			this._setActiveBullet();
-			activePrevSlide.setStyle("z-index", 2);
 			var orbitWidth = this.spin.getSize().x;
 			var orbitHeight = this.spin.getSize().y;
-
 			var morphOptions, prevMorphOptions, activeStyles;
-			activeSlide.set("morph", this.options.transitionOption);
 
-			if(this.options.transition === "fade"){
-				activeStyles = {
-					opacity:0.0,
-					"z-index" : 3
-				};
-				morphOptions = {
-					"opacity": 1.0
-				};
-			}else if(this.options.transition === "horizontal-slide"){
-				if(slideDirection == "next") {
-					activeStyles = {
-						"left": orbitWidth,
-						"z-index" : 3
-					};
-					morphOptions = {
-						"left": 0
-					};
-				}
-				if(slideDirection == "prev") {
-					activeStyles = {
-						"left": -orbitWidth,
-						"z-index" : 3
-					};
-					morphOptions = {
-						"left": 0
-					};
-				}
-			}else if(this.options.transition === "vertical-slide"){
-				if(slideDirection == "prev") {
-					activeStyles = {
-						"top": orbitHeight,
-						"z-index" : 3
-					};
-					morphOptions = {
-						"top": 0
-					};
-				}
-				if(slideDirection == "next") {
-					activeStyles = {
-						"top": -orbitHeight,
-						"z-index" : 3
-					};
-					morphOptions = {
-						"top": 0
-					};
-				}
-			}else if(this.options.transition === "horizontal-push"){
-				if(slideDirection == "next") {
-					activeStyles = {
-						"left": orbitWidth,
-						"z-index" : 3
-					};
-					morphOptions = {
-						"left": 0
-					};
-
-					prevMorphOptions = {
-						"left": -orbitWidth
-					};
-				}
-				if(slideDirection == "prev") {
-					activeStyles = {
-						"left": -orbitWidth,
-						"z-index" : 3
-					};
-					morphOptions = {
-						"left": 0
-					};
-
-					prevMorphOptions = {
-						"left": orbitWidth
-					};
-				}
+			switch (this.options.transition) {
+				case "fade":
+					activeStyles = { opacity: 0 };
+					morphOptions = { opacity: 1	};
+					break;
+				case "horizontal-slide":
+					if (slideDirection === "next") {
+						activeStyles = { left: orbitWidth };
+					} else if(slideDirection === "prev") {
+						activeStyles = { left: -orbitWidth };
+					}
+					morphOptions = { left: 0 };
+					break;
+				case "vertical-slide":
+					if(slideDirection === "prev") {
+						activeStyles = { top: orbitHeight };
+					} else if(slideDirection === "next") {
+						activeStyles = { top: -orbitHeight };
+					}
+					morphOptions = { top: 0 };
+					break;
+				case "horizontal-push":
+					if(slideDirection === "next") {
+						activeStyles = { left: orbitWidth };
+						prevMorphOptions = { left: -orbitWidth };
+					} else if(slideDirection === "prev") {
+						activeStyles = { left: -orbitWidth };
+						prevMorphOptions = { left: orbitWidth };
+					}
+					morphOptions = { left: 0 };
+					break;
 			}
 
+			activeSlide.setStyle("z-index", 3);
 			activeSlide.setStyles(activeStyles);
+			activeSlide.set("morph", this.options.transitionOption);
 			activeSlide.get("morph").start(morphOptions).chain(function(){
 						self.slides[prevActiveSlideIndex].setStyle("z-index", 1);
 						self.unlock();
 						self.options.afterSlideChange(this);
 			});
 
+			activePrevSlide.setStyle("z-index", 2);
 			if(prevMorphOptions !== undefined){
 				activePrevSlide.set("morph", this.options.transitionOption);
 				activePrevSlide.get("morph").start(prevMorphOptions).chain(function(){
