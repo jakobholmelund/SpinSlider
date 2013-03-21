@@ -35,6 +35,7 @@ var Spin = new Class({
 		bullets: true,// true or false to activate the bullet navigation
 		bulletThumbs: false,// thumbnails for the bullets
 		bulletThumbLocation: '',// location from this file where thumbs will be
+		beforeSlideChange: function(){},// empty function
 		afterSlideChange: function(){}// empty function
 	},
 	initialize:function(element, options){
@@ -248,9 +249,12 @@ var Spin = new Class({
 					};
 				}
 			}
-
+			activeSlide.get("morph").addEvent('start',function(){
+						self.options.beforeSlideChange(this);
+			});
 			activeSlide.setStyles(activeStyles);
 			activeSlide.get("morph").start(morphOptions).chain(function(){
+						this.removeEvents('start');
 						self.slides[prevActiveSlideIndex].setStyle("z-index", 1);
 						self.unlock();
 						self.options.afterSlideChange(this);
