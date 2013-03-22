@@ -131,6 +131,12 @@ var Spin = new Class({
 			this._setActiveBullet();
 		}
 	},
+
+    	showItem: function(element) {
+        	this._stopClock();
+        	this._spin(element);
+    	},
+
 	_spin:function(direction){
 		var prevActiveSlideIndex = this.slides.indexOf(this.activeSlide),
 			activeSlideIndex = prevActiveSlideIndex,
